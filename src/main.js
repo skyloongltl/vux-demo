@@ -8,6 +8,8 @@ import Home from './components/HelloFromVux'
 import OverWrite from './components/Overwrite-left.vue'
 import List from './components/List.vue'
 import ArticleList from './components/ArticleList.vue'
+import Crumbs from './components/Crumbs.vue'
+import Article from './components/Article.vue'
 
 Vue.use(VueRouter)
 
@@ -27,6 +29,14 @@ const routes = [
   {
     path: '/articleList',
     component: ArticleList
+  },
+  {
+    path: '/crumbs',
+    component: Crumbs
+  },
+  {
+    path: '/article',
+    component: Article
   }
 ]
 

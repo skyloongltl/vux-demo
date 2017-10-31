@@ -1,14 +1,20 @@
 <template>
   <div>
     <x-header>
-      <span>overwrite-left</span>
-      <x-icon slot="overwrite-left" type="navicon-round" @click="show = true" size="35" style="fill:#fff;position:relative;top:-8px;left:-3px;"></x-icon>
-      <x-icon slot="right" type="person" size="35" @click="login = true" style="fill:#fff;position:relative;top:-8px;left:-3px;"></x-icon>
-      <x-icon slot="right" type="search" size="35" @click="search = true" style="fill:#fff;position:relative;top:-8px;left:-3px;"></x-icon>
+      <span>skyloong博客</span>
+      <x-icon slot="overwrite-left" type="navicon-round" @click="show = true" size="35" style="fill:#fff;position:relative;top:-4px;left:-3px;"></x-icon>
+      <x-icon slot="right" type="person" size="35" @click="login = true" style="fill:#fff;position:relative;top:-4px;left:-3px;"></x-icon>
+      <x-icon slot="right" type="search" size="35" @click="search = true" style="fill:#fff;position:relative;top:-4px;left:-3px;"></x-icon>
     </x-header>
     <div v-transfer-dom>
       <popup v-model="show" position="left" width="50%">
-        <div class="position-horizontal-demo">
+        <div>
+          <group>
+            <cell v-for="i in 20" :key="i" :title="i" link="https://www.baidu.com"></cell>
+          </group>
+          <div style="padding: 15px;">
+            <x-button @click.native="show13 = false" plain type="primary"> Close Me </x-button>
+          </div>
         </div>
       </popup>
     </div>
@@ -38,7 +44,7 @@
 </template>
 
 <script>
-  import { XHeader, TransferDom, Popup, XDialog, Group, XInput, XButton, Search } from 'vux'
+  import { XHeader, TransferDom, Popup, XDialog, Group, XInput, XButton, Search, Cell } from 'vux'
 
   export default {
     directives: {
@@ -51,7 +57,8 @@
       XHeader,
       Group,
       XButton,
-      Search
+      Search,
+      Cell
     },
     data () {
       return {
@@ -70,6 +77,9 @@
       },
       onFocus () {
         console.log('on focus')
+      },
+      log (str) {
+        console.log(str)
       }
     }
   }
