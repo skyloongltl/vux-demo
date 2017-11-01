@@ -60,32 +60,86 @@ debug($data);</code></pre>
         </ul>
       </div>
       <div class="comment-list">
-        <div>
-          <div>
-            <img/>
-            <p></p>
-            <p></p>
-            <a></a>
+        <div class="one-comment">
+          <div class="comment-details">
+            <div class="col-3 header-img" style="float: left">
+              <img src="../../../static/img/581.jpg"/>
+            </div>
+            <div class="col-9" style="float: left;padding-left: 20px;font-size: 14px">
+              <p>
+                <span style="color: #FF9900">skyloong：</span>
+                加微看片:boys11t
+              </p>
+              <p style="float: left">2016-11-10 21:36:08</p>
+              <a href="javascript:;" style="float: left;padding-left: 10px;">回复</a>
+            </div>
           </div>
-          <div>
-            <img/>
-            <p></p>
-            <p></p>
-            <a></a>
+          <div class="comment-reply">
+            <div class="col-3 header-img" style="float: left">
+              <img src="../../../static/img/581.jpg"/>
+            </div>
+            <div class="col-9" style="float: left;padding-left: 20px;font-size: 14px">
+              <p>
+                <span style="color: #FF9900">skyloong 回复 sky：</span>
+                加微看片:boys11t
+              </p>
+              <p style="float: left">2016-11-10 21:36:08</p>
+              <a href="javascript:;" style="float: left;padding-left: 10px;">回复</a>
+            </div>
+          </div>
+          <div class="comment-reply">
+            <div class="col-3 header-img" style="float: left">
+              <img src="../../../static/img/581.jpg"/>
+            </div>
+            <div class="col-9" style="float: left;padding-left: 20px;font-size: 14px">
+              <p>
+                <span style="color: #FF9900">sky 回复 skyloong：</span>
+                加微看片:boys11t
+              </p>
+              <p style="float: left">2016-11-10 21:36:08</p>
+              <a href="javascript:;" style="float: left;padding-left: 10px;">回复</a>
+            </div>
           </div>
         </div>
-        <div>
-          <div>
-            <img/>
-            <p></p>
-            <p></p>
-            <a></a>
+        <div class="one-comment">
+          <div class="comment-details">
+            <div class="col-3 header-img" style="float: left">
+              <img src="../../../static/img/581.jpg"/>
+            </div>
+            <div class="col-9" style="float: left;padding-left: 20px;font-size: 14px">
+              <p>
+                <span style="color: #FF9900">skyloong：</span>
+                加微看片:boys11t
+              </p>
+              <p style="float: left">2016-11-10 21:36:08</p>
+              <a href="javascript:;" style="float: left;padding-left: 10px;">回复</a>
+            </div>
           </div>
-          <div>
-            <img/>
-            <p></p>
-            <p></p>
-            <a></a>
+          <div class="comment-reply">
+            <div class="col-3 header-img" style="float: left">
+              <img src="../../../static/img/581.jpg"/>
+            </div>
+            <div class="col-9" style="float: left;padding-left: 20px;font-size: 14px">
+              <p>
+                <span style="color: #FF9900">skyloong 回复 sky：</span>
+                加微看片:boys11t
+              </p>
+              <p style="float: left">2016-11-10 21:36:08</p>
+              <a href="javascript:;" style="float: left;padding-left: 10px;">回复</a>
+            </div>
+          </div>
+          <div class="comment-reply">
+            <div class="col-3 header-img" style="float: left">
+              <img src="../../../static/img/581.jpg"/>
+            </div>
+            <div class="col-9" style="float: left;padding-left: 20px;font-size: 14px">
+              <p>
+                <span style="color: #FF9900">sky 回复 skyloong：</span>
+                加微看片加微看片加微看片加微看片加微看片加微看片:boys11t
+              </p>
+              <p style="float: left">2016-11-10 21:36:08</p>
+              <a href="javascript:;" style="float: left;padding-left: 10px;">回复</a>
+            </div>
           </div>
         </div>
       </div>
@@ -118,6 +172,35 @@ debug($data);</code></pre>
     width: 95%;
     margin: 10px auto;
     background-color: #fff;
+  }
+
+  .comment .comment-list {
+    padding: 10px 10px 10px 10px;
+    line-height: 25px;
+  }
+
+  .comment .comment-list .header-img {
+    border: 0 solid;
+    width: 45px;
+    height: 45px;
+  }
+
+  .comment .comment-list .comment-details {
+    overflow: hidden;
+  }
+
+  .comment .comment-list .header-img img {
+    width: 45px;
+    height: 45px;
+  }
+
+  .comment .comment-list .one-comment {
+    padding: 10px 0 10px;
+    border-bottom: 1px solid #E6EAED;
+  }
+
+  .comment .comment-list .one-comment .comment-reply {
+    padding: 10px 0 0 65px;
   }
 
   .comment .comment-title {

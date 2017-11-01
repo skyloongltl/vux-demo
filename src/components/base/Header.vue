@@ -2,19 +2,16 @@
   <div>
     <x-header>
       <span>skyloong博客</span>
-      <x-icon slot="overwrite-left" type="navicon-round" @click="show = true" size="35" style="fill:#fff;position:relative;top:-4px;left:-3px;"></x-icon>
+      <x-icon slot="overwrite-left" type="navicon-round" @click="showPopup = true" size="35" style="fill:#fff;position:relative;top:-4px;left:-3px;"></x-icon>
       <x-icon slot="right" type="person" size="35" @click="login = true" style="fill:#fff;position:relative;top:-4px;left:-3px;"></x-icon>
       <x-icon slot="right" type="search" size="35" @click="search = true" style="fill:#fff;position:relative;top:-4px;left:-3px;"></x-icon>
     </x-header>
     <div v-transfer-dom>
-      <popup v-model="show" position="left" width="50%">
+      <popup v-model="showPopup" @on-hide="close()" position="left" width="50%">
         <div>
           <group>
             <cell v-for="i in 20" :key="i" :title="i" link="https://www.baidu.com"></cell>
           </group>
-          <div style="padding: 15px;">
-            <x-button @click.native="show13 = false" plain type="primary"> Close Me </x-button>
-          </div>
         </div>
       </popup>
     </div>
@@ -60,9 +57,12 @@
       Search,
       Cell
     },
+    props: {
+      showPopup: Boolean
+    },
     data () {
       return {
-        show: false,
+        showPopup: false,
         login: false,
         search: false,
         autoFixed: false
@@ -80,6 +80,9 @@
       },
       log (str) {
         console.log(str)
+      },
+      close () {
+        this.$emit('showPopup', false)
       }
     }
   }

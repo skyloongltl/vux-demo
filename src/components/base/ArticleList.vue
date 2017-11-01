@@ -436,17 +436,14 @@
 
   img {
     width: 90px;
-    height: 120px;
+    height: 140px;
+    border: 0;
   }
 
   .box {
     width: 95%;
-    margin: 10px auto;
+    margin: 0 auto;
     background-color: #F8F8F8;
-  }
-
-  img {
-    border: 0px;
   }
 
   .p5 {
@@ -482,6 +479,7 @@
 
   .m .list_1 p {
     padding-top: 8px;
+    padding-right: 10px;
   }
 
   .m .list_1 b {

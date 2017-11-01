@@ -4,23 +4,31 @@ import Vue from 'vue'
 import FastClick from 'fastclick'
 import VueRouter from 'vue-router'
 import App from './App'
-import Home from './components/HelloFromVux'
-import OverWrite from './components/Overwrite-left.vue'
-import List from './components/List.vue'
-import ArticleList from './components/ArticleList.vue'
-import Crumbs from './components/Crumbs.vue'
-import Article from './components/Article.vue'
+import RootHome from './components/HelloFromVux'
+import Header from './components/base/Header.vue'
+import List from './components/base/List.vue'
+import ArticleList from './components/base/ArticleList.vue'
+import Crumbs from './components/base/Crumbs.vue'
+import Article from './components/base/Article.vue'
+import Top from './components/base/GoTop.vue'
+import Page from './components/base/Page.vue'
+
+import Home from './components/HomePage.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
+    path: '/Home',
     component: Home
   },
   {
-    path: '/overwrite',
-    component: OverWrite
+    path: '/',
+    component: RootHome
+  },
+  {
+    path: '/header',
+    component: Header
   },
   {
     path: '/list',
@@ -37,6 +45,14 @@ const routes = [
   {
     path: '/article',
     component: Article
+  },
+  {
+    path: '/top',
+    component: Top
+  },
+  {
+    path: '/page',
+    component: Page
   }
 ]
 
