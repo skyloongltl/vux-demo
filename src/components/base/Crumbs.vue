@@ -15,7 +15,7 @@
 </script>
 
 
-<style>
+<style lang="less" scoped>
   .crumbs ul{
     list-style: none;
   }

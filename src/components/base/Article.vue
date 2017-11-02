@@ -9,7 +9,8 @@
       <div class="content">
         <p>上篇文章讲过打印数据的函数；<br><a href="https://baijunyao.com/article/123">写给thinkphp开发者的laravel系列教程(九)打印数据</a><br>but 打印函数有个弊端是会破坏打印页面的 html 结构；<br>在不使用 IDE 编辑器断点调试的情况；<br>有什么方案既能打印数据还不破坏页面结构呢？
         </p>
-        <p>使用 thinkphp 的童鞋肯定对下面这个小图标很熟悉；<br><img src="/uploads/article/20171022/59eca5744185b.jpg" alt="" title=""><br>点击打开是会显示当前页面的一些信息；<br>就像 chrome 或者 firefox 的 F12 开发者调试工具一样；<br>比较有用的是当前页面的数据是执行了那些 sql 后得出的；<br><img
+        <p>使用 thinkphp 的童鞋肯定对下面这个小图标很熟悉；<br><img src="/uploads/article/20171022/59eca5744185b.jpg" alt=""
+                                                 title=""><br>点击打开是会显示当前页面的一些信息；<br>就像 chrome 或者 firefox 的 F12 开发者调试工具一样；<br>比较有用的是当前页面的数据是执行了那些 sql 后得出的；<br><img
           src="/uploads/article/20171022/59eca620bc56b.jpg" alt=""
           title=""><br>我们可以借助这个小功能把数据打印在 trace 中；<br>比如说要打印一个 <code>$data</code> ；</p>
         <pre><code class="lang-php">$data = [
@@ -47,7 +48,7 @@ debug($data);</code></pre>
             <input class="email" type="text" name="email" placeholder="接收回复的email地址" value="">
           </li>
           <li class="submit-button">
-            <input type="button" value="评 论">
+            <input type="button" :aid="1" value="评 论">
           </li>
           <li class="clear-float"></li>
         </ul>
@@ -71,7 +72,7 @@ debug($data);</code></pre>
                 加微看片:boys11t
               </p>
               <p style="float: left">2016-11-10 21:36:08</p>
-              <a href="javascript:;" style="float: left;padding-left: 10px;">回复</a>
+              <a href="javascript:;" :aid="aid" :pid="pid" :username="username" style="float: left;padding-left: 10px;" @click="reply(aid, pid, username)">回复</a>
             </div>
           </div>
           <div class="comment-reply">
@@ -84,7 +85,7 @@ debug($data);</code></pre>
                 加微看片:boys11t
               </p>
               <p style="float: left">2016-11-10 21:36:08</p>
-              <a href="javascript:;" style="float: left;padding-left: 10px;">回复</a>
+              <a href="javascript:;" :aid="1" :pid="1" :username="'skyloong'" style="float: left;padding-left: 10px;">回复</a>
             </div>
           </div>
           <div class="comment-reply">
@@ -97,8 +98,20 @@ debug($data);</code></pre>
                 加微看片:boys11t
               </p>
               <p style="float: left">2016-11-10 21:36:08</p>
-              <a href="javascript:;" style="float: left;padding-left: 10px;">回复</a>
+              <a href="javascript:;" :aid="1" :pid="2" :username="'sky'" style="float: left;padding-left: 10px;">回复</a>
             </div>
+          </div>
+          <div class="box-textarea" v-show="box_textarea_list['box_textarea_1']">
+            <div class="box-content" contenteditable="true">请先登录后发表评论</div>
+            <ul>
+              <li>
+                <input class="email" type="text" name="email" placeholder="接收回复的email地址" value="">
+              </li>
+              <li class="submit-button">
+                <input type="button" :aid="aid" :pid="pid" :username="username" value="评 论">
+              </li>
+              <li class="clear-float"></li>
+            </ul>
           </div>
         </div>
         <div class="one-comment">
@@ -141,6 +154,18 @@ debug($data);</code></pre>
               <a href="javascript:;" style="float: left;padding-left: 10px;">回复</a>
             </div>
           </div>
+          <div class="box-textarea" style="display: none">
+            <div class="box-content" contenteditable="true">请先登录后发表评论</div>
+            <ul>
+              <li>
+                <input class="email" type="text" name="email" placeholder="接收回复的email地址" value="">
+              </li>
+              <li class="submit-button">
+                <input type="button" :aid="aid" :pid="pid" :username="username" value="评 论">
+              </li>
+              <li class="clear-float"></li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -153,13 +178,33 @@ debug($data);</code></pre>
   export default {
     components: {
       Divider
+    },
+    data () {
+      return {
+        aid: 1,
+        pid: 1,
+        username: 'skyloong',
+        box_textarea_list: []
+      }
+    },
+    methods: {
+      reply (aid, pid, username) {
+        this.box_textarea_list.$set('box_textarea_1', true)
+        console.log(aid + pid + username)
+      }
+    },
+    mounted () {
+      this.box_textarea_list['box_textarea_1'] = false
     }
   }
 </script>
 
-<style>
+<style lang="less" scoped>
   .article-content-comment {
-    background-color: #F8F8F8;
+    background: url(../../../static/img/bj.png) repeat top left scroll;
+    ul {
+      list-style: none;
+    }
   }
 
   .article {
@@ -168,35 +213,64 @@ debug($data);</code></pre>
     background-color: #fff;
   }
 
+  .article .title {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: center;
+  }
+
+  .article .prev-next {
+    margin-top: 40px;
+    padding-left: 10px;
+    width: 100%;
+    height: 60px;
+    font-size: 13px;
+    .prev {
+      width: 100%;
+      height: 20px;
+      line-height: 20px;
+    }
+    .next {
+      width: 100%;
+      height: 20px;
+      line-height: 20px;
+    }
+  }
+
+  .article .content {
+    padding-left: 10px;
+    font-size: 15px;
+  }
+
   .comment {
     width: 95%;
     margin: 10px auto;
     background-color: #fff;
+    .comment-list {
+      padding: 10px 10px 10px 10px;
+      line-height: 25px;
+      .header-img {
+        border: 0 solid;
+        width: 45px;
+        height: 45px;
+      }
+      .comment-details {
+        overflow: hidden;
+      }
+      .one-comment {
+        padding: 10px 0 10px;
+        border-bottom: 1px solid #E6EAED;
+      }
+    }
   }
 
-  .comment .comment-list {
-    padding: 10px 10px 10px 10px;
-    line-height: 25px;
-  }
-
-  .comment .comment-list .header-img {
-    border: 0 solid;
-    width: 45px;
-    height: 45px;
-  }
-
-  .comment .comment-list .comment-details {
-    overflow: hidden;
+  .comment .comment-list .one-comment a:active {
+    color: red;
   }
 
   .comment .comment-list .header-img img {
     width: 45px;
     height: 45px;
-  }
-
-  .comment .comment-list .one-comment {
-    padding: 10px 0 10px;
-    border-bottom: 1px solid #E6EAED;
   }
 
   .comment .comment-list .one-comment .comment-reply {
@@ -211,13 +285,12 @@ debug($data);</code></pre>
     border-bottom: 2px solid #88ABC3;
     color: #333;
     font-size: 14px;
-  }
-
-  .comment .comment-title .row {
-    list-style: none;
-    overflow: hidden;
-    margin-right: 10px;
-    margin-left: 10px;
+    .row {
+      list-style: none;
+      overflow: hidden;
+      margin-right: 10px;
+      margin-left: 10px;
+    }
   }
 
   .comment .comment-title .row li {
@@ -286,37 +359,6 @@ debug($data);</code></pre>
     border-radius: 4px;
     color: #999;
     overflow-y: auto;
-    font-size: 14px;
-  }
-
-  .article .title {
-    padding-top: 20px;
-    padding-bottom: 20px;
-    text-align: center;
-  }
-
-  .article .prev-next {
-    margin-top: 40px;
-    padding-left: 10px;
-    width: 100%;
-    height: 60px;
-    font-size: 13px;
-  }
-
-  .article .prev-next .prev {
-    width: 100%;
-    height: 20px;
-    line-height: 20px;
-  }
-
-  .article .prev-next .next {
-    width: 100%;
-    height: 20px;
-    line-height: 20px;
-  }
-
-  .article .content {
-    padding-left: 10px;
     font-size: 14px;
   }
 

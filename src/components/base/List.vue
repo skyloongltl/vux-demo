@@ -45,7 +45,7 @@
   }
 </script>
 
-<style>
+<style lang="less" scoped>
   .ximg-demo {
     width: 30%;
     height: 180px;

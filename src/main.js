@@ -4,7 +4,6 @@ import Vue from 'vue'
 import FastClick from 'fastclick'
 import VueRouter from 'vue-router'
 import App from './App'
-import RootHome from './components/HelloFromVux'
 import Header from './components/base/Header.vue'
 import List from './components/base/List.vue'
 import ArticleList from './components/base/ArticleList.vue'
@@ -14,17 +13,34 @@ import Top from './components/base/GoTop.vue'
 import Page from './components/base/Page.vue'
 
 import Home from './components/HomePage.vue'
+import ArticleContent from './components/ArticleC.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/Home',
-    component: Home
+    path: '/articleC',
+    component: ArticleContent
+  },
+  {
+    path: '/articleC/:aid',
+    component: ArticleContent
   },
   {
     path: '/',
-    component: RootHome
+    component: Home
+  },
+  {
+    path: '/home',
+    component: Home
+  },
+  {
+    path: '/home/:page',
+    component: Home
+  },
+  {
+    path: '/classify/:id/:page',
+    component: Home
   },
   {
     path: '/header',

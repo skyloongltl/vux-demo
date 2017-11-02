@@ -2,16 +2,16 @@
   <div>
     <ul class="pagination">
       <li v-if="current != 1" @click="current-- && goto(current)">
-        <a href="javascript:;" :title="'skyloong' + current">上一页</a>
+        <a :href="url + Number(current - 1)" :title="'skyloong' + current">上一页</a>
       </li>
       <li v-if="current == 1">
         <span class="notClick notAllow">上一页</span>
       </li>
       <li v-for="index in pages" @click="goto(index)" :class="{'active': current == index}" :key="index">
-        <a href="javascript:;">{{index}}</a>
+        <a :href="url + index">{{index}}</a>
       </li>
       <li v-if="current != totalPages" @click="current++ && goto(current++)">
-        <a href="javascript:;">下一页</a>
+        <a :href="url + Number(current + 1)">下一页</a>
       </li>
       <li  v-if="totalPages == current">
         <span class="notClick notAllow">下一页</span>
@@ -22,6 +22,12 @@
 
 <script>
   export default {
+    props: {
+      url: {
+        type: String,
+        required: true
+      }
+    },
     data () {
       return {
         current: 1,
@@ -52,12 +58,27 @@
       goto (index) {
         if (index === this.current) return
         this.current = index
+        this.$route.params.page = index
+      },
+      getParam () {
+        if (this.$route.params.page < 1 || this.$route.params.page === undefined) {
+          this.current = 1
+        } else if ((this.$route.params.page + 0) != this.$route.params.page) {
+          this.current = 1
+        } else if (this.$route.params.page > this.totalPages) {
+          this.current = this.totalPages
+        } else {
+          this.current = this.$route.params.page
+        }
       }
+    },
+    mounted () {
+      this.getParam()
     }
   }
 </script>
 
-<style>
+<style lang="less" scoped>
 
   li {
     list-style: none;
@@ -93,10 +114,6 @@
     border: 1px solid #ddd;
     background: #fff;
     color: #909090;
-  }
-
-  .pagination li a:hover {
-    background: #eee;
   }
 
   .pagination li.active a {

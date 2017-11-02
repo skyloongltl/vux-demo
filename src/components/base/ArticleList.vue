@@ -409,29 +409,15 @@
   }
 </script>
 
-<style>
+<style lang="less" scoped>
   * {
     padding: 0px;
     margin: 0px;
   }
 
-  body {
-    font-size: 12px;
-    line-height: 150%;
-    color: #666666
-  }
-
   a {
     color: #003399;
     text-decoration: none
-  }
-
-  a:hover {
-    color: #999900;
-  }
-
-  div {
-    overflow: hidden
   }
 
   img {
@@ -443,7 +429,7 @@
   .box {
     width: 95%;
     margin: 0 auto;
-    background-color: #F8F8F8;
+    background: url(../../../static/img/bj.png) repeat top left scroll;
   }
 
   .p5 {
@@ -492,5 +478,11 @@
     display: flex;
     -webkit-align-items: center;
     align-items: center;
+  }
+</style>
+
+<style>
+  div {
+    overflow: hidden
   }
 </style>
